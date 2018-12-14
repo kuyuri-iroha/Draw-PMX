@@ -13,5 +13,144 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ソース ファイル\CWE">
+      <UniqueIdentifier>{9de38ec0-9403-4e54-8006-1a8b39970783}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CWE\CWEAll.cpp">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClCompile>
+    <ClCompile Include="CWE\CWECallBackFunc.cpp">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClCompile>
+    <ClCompile Include="CWE\CWEError.cpp">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClCompile>
+    <ClCompile Include="CWE\CWEFileLoader.cpp">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClCompile>
+    <ClCompile Include="CWE\CWEGamepad.cpp">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClCompile>
+    <ClCompile Include="CWE\CWEGraphicManager.cpp">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClCompile>
+    <ClCompile Include="CWE\CWEGraphicResource.cpp">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClCompile>
+    <ClCompile Include="CWE\CWEInputManager.cpp">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClCompile>
+    <ClCompile Include="CWE\CWEKeyboard.cpp">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClCompile>
+    <ClCompile Include="CWE\CWEMath.cpp">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClCompile>
+    <ClCompile Include="CWE\CWEMotion.cpp">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClCompile>
+    <ClCompile Include="CWE\CWEMouse.cpp">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClCompile>
+    <ClCompile Include="CWE\CWEPolygon.cpp">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClCompile>
+    <ClCompile Include="CWE\CWERandomizer.cpp">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClCompile>
+    <ClCompile Include="CWE\CWESound.cpp">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClCompile>
+    <ClCompile Include="CWE\CWEStatic.cpp">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClCompile>
+    <ClCompile Include="CWE\CWEThread.cpp">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClCompile>
+    <ClCompile Include="CWE\CWETimer.cpp">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClCompile>
+    <ClCompile Include="CWE\CWEViewPort.cpp">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClCompile>
+    <ClCompile Include="CWE\CWEWindows.cpp">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CWE\CWEAll.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWEError.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWEFileLoader.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWEGamepad.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWEGraphicManager.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWEGraphicResource.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWEIncludedAPI.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWEInputManager.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWEKeyboard.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWELib.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWEMacroConstants.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWEMath.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWEMotion.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWEMouse.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWEPolygon.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWERandomizer.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWESound.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWEStatic.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWEThread.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWETimer.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWETypeDefinition.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWEUsefullyMacro.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWEViewPort.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
+    <ClInclude Include="CWE\CWEWindows.h">
+      <Filter>ソース ファイル\CWE</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

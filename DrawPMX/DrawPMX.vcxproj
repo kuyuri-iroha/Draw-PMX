@@ -115,6 +115,52 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CWE\CWEAll.cpp" />
+    <ClCompile Include="CWE\CWECallBackFunc.cpp" />
+    <ClCompile Include="CWE\CWEError.cpp" />
+    <ClCompile Include="CWE\CWEFileLoader.cpp" />
+    <ClCompile Include="CWE\CWEGamepad.cpp" />
+    <ClCompile Include="CWE\CWEGraphicManager.cpp" />
+    <ClCompile Include="CWE\CWEGraphicResource.cpp" />
+    <ClCompile Include="CWE\CWEInputManager.cpp" />
+    <ClCompile Include="CWE\CWEKeyboard.cpp" />
+    <ClCompile Include="CWE\CWEMath.cpp" />
+    <ClCompile Include="CWE\CWEMotion.cpp" />
+    <ClCompile Include="CWE\CWEMouse.cpp" />
+    <ClCompile Include="CWE\CWEPolygon.cpp" />
+    <ClCompile Include="CWE\CWERandomizer.cpp" />
+    <ClCompile Include="CWE\CWESound.cpp" />
+    <ClCompile Include="CWE\CWEStatic.cpp" />
+    <ClCompile Include="CWE\CWEThread.cpp" />
+    <ClCompile Include="CWE\CWETimer.cpp" />
+    <ClCompile Include="CWE\CWEViewPort.cpp" />
+    <ClCompile Include="CWE\CWEWindows.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CWE\CWEAll.h" />
+    <ClInclude Include="CWE\CWEError.h" />
+    <ClInclude Include="CWE\CWEFileLoader.h" />
+    <ClInclude Include="CWE\CWEGamepad.h" />
+    <ClInclude Include="CWE\CWEGraphicManager.h" />
+    <ClInclude Include="CWE\CWEGraphicResource.h" />
+    <ClInclude Include="CWE\CWEIncludedAPI.h" />
+    <ClInclude Include="CWE\CWEInputManager.h" />
+    <ClInclude Include="CWE\CWEKeyboard.h" />
+    <ClInclude Include="CWE\CWELib.h" />
+    <ClInclude Include="CWE\CWEMacroConstants.h" />
+    <ClInclude Include="CWE\CWEMath.h" />
+    <ClInclude Include="CWE\CWEMotion.h" />
+    <ClInclude Include="CWE\CWEMouse.h" />
+    <ClInclude Include="CWE\CWEPolygon.h" />
+    <ClInclude Include="CWE\CWERandomizer.h" />
+    <ClInclude Include="CWE\CWESound.h" />
+    <ClInclude Include="CWE\CWEStatic.h" />
+    <ClInclude Include="CWE\CWEThread.h" />
+    <ClInclude Include="CWE\CWETimer.h" />
+    <ClInclude Include="CWE\CWETypeDefinition.h" />
+    <ClInclude Include="CWE\CWEUsefullyMacro.h" />
+    <ClInclude Include="CWE\CWEViewPort.h" />
+    <ClInclude Include="CWE\CWEWindows.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
