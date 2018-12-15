@@ -22,7 +22,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	// 初期化
 	window.init();
 	HRESULT hr = directX11.init(window);
-	bool res = model.init(L"resources\\m_GUMI_V3_201306\\GUMI1.pmx", directX11.getDevice());
+	bool res = model.init(L"resources\\初音ミクver.2.1\\初音ミクver.2.1.pmx", directX11.getDevice());
 
 	// メインループ
 	while (window.processMessage())
@@ -41,16 +41,31 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		TexturedModelConstantBufferData tmcb{};
 		tmcb.world = XMMatrixIdentity();
 		tmcb.view = XMMatrixTranspose(
-			XMMatrixLookAtLH({ 0.0f, 10.0f, -30.0f }, { 0.0f, 10.0f, 0.0f }, { 0.0f, 1.0f, 0.0f })
+			XMMatrixLookAtLH({ 0.0f, 10.0f, -25.0f }, { 0.0f, 10.0f, 0.0f }, { 0.0f, 1.0f, 0.0f })
 		);
 		tmcb.projection = XMMatrixTranspose(
 			XMMatrixPerspectiveFovLH(50.0f * (XM_PI / 180.0f), static_cast<float>(Windows::WINDOW_WIDTH) / static_cast<float>(Windows::WINDOW_HEIGHT), 1.0f, 1000.0f)
 		);
 
 		// モデルの描画
-		for (unsigned i = 0; i < model.meshes.size(); i++)
+		for (unsigned i = 0; i < model.getMeshesSize(); i++)
 		{
-			model.drawMesh(directX11, i, reinterpret_cast<void*>(&tmcb));
+			if (model.meshHasTexture(i))
+			{
+				model.drawMesh(directX11, i, reinterpret_cast<void*>(&tmcb));
+			}
+			else
+			{
+				// 単色マテリアルの定数バッファの更新
+				NotTexturedModelConstantBufferData ntmcb{};
+				ntmcb.world = tmcb.world;
+				ntmcb.view = tmcb.view;
+				ntmcb.projection = tmcb.projection;
+				ntmcb.diffuseColor = XMVECTOR{model.meshes[i].diffuseColor.x, model.meshes[i].diffuseColor.y, model.meshes[i].diffuseColor.z, model.meshes[i].diffuseColor.w};
+				ntmcb.ambientColor = XMVECTOR{model.meshes[i].ambientColor.x, model.meshes[i].ambientColor.y, model.meshes[i].ambientColor.z};
+
+				model.drawMesh(directX11, i, reinterpret_cast<void*>(&ntmcb));
+			}
 		}
 
 		directX11.display();

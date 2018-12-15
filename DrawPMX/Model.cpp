@@ -130,8 +130,13 @@ bool Model::init(const std::wstring& _filePath, ID3D11Device* const _pDevice)
 				return false;
 			}
 			
-			// マテリアル用シェーダー
+			// テクスチャシェーダー
 			createTexturedShader(_pDevice, meshes[i]);
+		}
+		else
+		{
+			// 単色シェーダー
+			createNotTexturedShader(_pDevice, meshes[i]);
 		}
 
 		meshes[i].vertexNum = data.materials[i].vertexNum;
@@ -281,6 +286,113 @@ HRESULT Model::createTexturedShader(ID3D11Device* const _pDevice, Mesh& mesh)
 	cbDesc.MiscFlags = 0;
 	cbDesc.StructureByteStride = 0;
 	cbDesc.ByteWidth = 192;
+
+	result = _pDevice->CreateBuffer(&cbDesc, NULL, &mesh.pConstantBuffer);
+	if (FAILED(result))
+	{
+		return result;
+	}
+
+	// サンプラーステート -----------------------
+	D3D11_SAMPLER_DESC spDesc;
+	spDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+	spDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+	spDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+	spDesc.MipLODBias = 0.0f;
+	spDesc.MaxAnisotropy = 0;
+	spDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
+	spDesc.BorderColor[0] = 0.0f;
+	spDesc.BorderColor[1] = 0.0f;
+	spDesc.BorderColor[2] = 0.0f;
+	spDesc.BorderColor[3] = 0.0f;
+	spDesc.MaxLOD = FLT_MAX;
+	spDesc.MinLOD = -FLT_MAX;
+	spDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+
+	result = _pDevice->CreateSamplerState(&spDesc, &mesh.pSamplerState);
+
+	return result;
+}
+
+
+HRESULT Model::createNotTexturedShader(ID3D11Device* const _pDevice, Mesh& mesh)
+{
+	// 入力エレメント ---------------------------
+	std::array<D3D11_INPUT_ELEMENT_DESC, VertexBuffer_SIZE> ieDescs;
+
+	ieDescs[POSITION].SemanticName = "POSITION";
+	ieDescs[POSITION].SemanticIndex = 0;
+	ieDescs[POSITION].Format = DXGI_FORMAT_R32G32B32_FLOAT;
+	ieDescs[POSITION].InputSlot = POSITION;
+	ieDescs[POSITION].AlignedByteOffset = 0;
+	ieDescs[POSITION].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+	ieDescs[POSITION].InstanceDataStepRate = 0;
+
+	ieDescs[UV].SemanticName = "TEXCOORD";
+	ieDescs[UV].SemanticIndex = 0;
+	ieDescs[UV].Format = DXGI_FORMAT_R32G32_FLOAT;
+	ieDescs[UV].InputSlot = UV;
+	ieDescs[UV].AlignedByteOffset = 0;
+	ieDescs[UV].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+	ieDescs[UV].InstanceDataStepRate = 0;
+
+	ieDescs[NORMAL].SemanticName = "NORMAL";
+	ieDescs[NORMAL].SemanticIndex = 0;
+	ieDescs[NORMAL].Format = DXGI_FORMAT_R32G32B32_FLOAT;
+	ieDescs[NORMAL].InputSlot = NORMAL;
+	ieDescs[NORMAL].AlignedByteOffset = 0;
+	ieDescs[NORMAL].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+	ieDescs[NORMAL].InstanceDataStepRate = 0;
+
+	// 頂点シェーダー ---------------------------
+	ID3DBlob* pByteCode{};
+
+	HRESULT result = compileShader(L"shaders\\notTexturedModel.hlsl", "vsMain", true, pByteCode);
+	if (FAILED(result))
+	{
+		SafeRelease(pByteCode);
+		return result;
+	}
+
+	// 入力レイアウト
+	result = _pDevice->CreateInputLayout(&ieDescs[0], ieDescs.size(), pByteCode->GetBufferPointer(), pByteCode->GetBufferSize(), &mesh.pInputLayout);
+	if (FAILED(result))
+	{
+		SafeRelease(pByteCode);
+		return result;
+	}
+
+	// 頂点シェーダー
+	result = _pDevice->CreateVertexShader(pByteCode->GetBufferPointer(), pByteCode->GetBufferSize(), NULL, &mesh.pVertexShader);
+	SafeRelease(pByteCode);
+	if (FAILED(result))
+	{
+		return result;
+	}
+
+	// ピクセルシェーダー -----------------------
+	result = compileShader(L"shaders\\notTexturedModel.hlsl", "psMain", false, pByteCode);
+	if (FAILED(result))
+	{
+		SafeRelease(pByteCode);
+		return result;
+	}
+
+	result = _pDevice->CreatePixelShader(pByteCode->GetBufferPointer(), pByteCode->GetBufferSize(), NULL, &mesh.pPixelShader);
+	SafeRelease(pByteCode);
+	if (FAILED(result))
+	{
+		return result;
+	}
+
+	// 定数バッファ -----------------------------
+	D3D11_BUFFER_DESC cbDesc{};
+	cbDesc.Usage = D3D11_USAGE_DYNAMIC;
+	cbDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	cbDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	cbDesc.MiscFlags = 0;
+	cbDesc.StructureByteStride = 0;
+	cbDesc.ByteWidth = 224;
 
 	result = _pDevice->CreateBuffer(&cbDesc, NULL, &mesh.pConstantBuffer);
 	if (FAILED(result))

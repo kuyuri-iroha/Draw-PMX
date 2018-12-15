@@ -13,6 +13,17 @@ struct TexturedModelConstantBufferData
 	XMMATRIX projection;
 };
 
+// notTexturedModelシェーダーの定数バッファデータ型
+struct NotTexturedModelConstantBufferData
+{
+	XMMATRIX world;
+	XMMATRIX view;
+	XMMATRIX projection;
+
+	XMVECTOR diffuseColor;
+	XMVECTOR ambientColor;
+};
+
 
 // メッシュ
 struct Mesh
@@ -38,6 +49,8 @@ struct Mesh
 class Model
 {
 public:
+	inline size_t getMeshesSize() {return meshes.size();}
+	inline bool meshHasTexture(int _meshIndex) {return meshes[_meshIndex].pTexture != nullptr;}
 	bool init(const std::wstring& _filePath, ID3D11Device* const _pDevice);
 	void drawMesh(DirectX11& _directX11, int _meshIndex, const void* const _pConstantBufferData);
 	void end();
@@ -58,5 +71,6 @@ private:
 	unsigned mIndexCount;
 
 	HRESULT createTexturedShader(ID3D11Device* const _pDevice, Mesh& mesh);
+	HRESULT createNotTexturedShader(ID3D11Device* const _pDevice, Mesh& mesh);
 };
 
