@@ -29,27 +29,27 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -76,7 +76,13 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>F:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>api.h</PrecompiledHeaderFile>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>F:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -84,7 +90,13 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>F:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>api.h</PrecompiledHeaderFile>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>F:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -94,10 +106,14 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>F:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>api.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>F:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -108,59 +124,28 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>F:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>api.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>F:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CWE\CWEAll.cpp" />
-    <ClCompile Include="CWE\CWECallBackFunc.cpp" />
-    <ClCompile Include="CWE\CWEError.cpp" />
-    <ClCompile Include="CWE\CWEFileLoader.cpp" />
-    <ClCompile Include="CWE\CWEGamepad.cpp" />
-    <ClCompile Include="CWE\CWEGraphicManager.cpp" />
-    <ClCompile Include="CWE\CWEGraphicResource.cpp" />
-    <ClCompile Include="CWE\CWEInputManager.cpp" />
-    <ClCompile Include="CWE\CWEKeyboard.cpp" />
-    <ClCompile Include="CWE\CWEMath.cpp" />
-    <ClCompile Include="CWE\CWEMotion.cpp" />
-    <ClCompile Include="CWE\CWEMouse.cpp" />
-    <ClCompile Include="CWE\CWEPolygon.cpp" />
-    <ClCompile Include="CWE\CWERandomizer.cpp" />
-    <ClCompile Include="CWE\CWESound.cpp" />
-    <ClCompile Include="CWE\CWEStatic.cpp" />
-    <ClCompile Include="CWE\CWEThread.cpp" />
-    <ClCompile Include="CWE\CWETimer.cpp" />
-    <ClCompile Include="CWE\CWEViewPort.cpp" />
-    <ClCompile Include="CWE\CWEWindows.cpp" />
+    <ClCompile Include="directx11.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="pmx_loader.cpp" />
+    <ClCompile Include="windows.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CWE\CWEAll.h" />
-    <ClInclude Include="CWE\CWEError.h" />
-    <ClInclude Include="CWE\CWEFileLoader.h" />
-    <ClInclude Include="CWE\CWEGamepad.h" />
-    <ClInclude Include="CWE\CWEGraphicManager.h" />
-    <ClInclude Include="CWE\CWEGraphicResource.h" />
-    <ClInclude Include="CWE\CWEIncludedAPI.h" />
-    <ClInclude Include="CWE\CWEInputManager.h" />
-    <ClInclude Include="CWE\CWEKeyboard.h" />
-    <ClInclude Include="CWE\CWELib.h" />
-    <ClInclude Include="CWE\CWEMacroConstants.h" />
-    <ClInclude Include="CWE\CWEMath.h" />
-    <ClInclude Include="CWE\CWEMotion.h" />
-    <ClInclude Include="CWE\CWEMouse.h" />
-    <ClInclude Include="CWE\CWEPolygon.h" />
-    <ClInclude Include="CWE\CWERandomizer.h" />
-    <ClInclude Include="CWE\CWESound.h" />
-    <ClInclude Include="CWE\CWEStatic.h" />
-    <ClInclude Include="CWE\CWEThread.h" />
-    <ClInclude Include="CWE\CWETimer.h" />
-    <ClInclude Include="CWE\CWETypeDefinition.h" />
-    <ClInclude Include="CWE\CWEUsefullyMacro.h" />
-    <ClInclude Include="CWE\CWEViewPort.h" />
-    <ClInclude Include="CWE\CWEWindows.h" />
+    <ClInclude Include="api.h" />
+    <ClInclude Include="directx11.h" />
+    <ClInclude Include="pmx_loader.h" />
+    <ClInclude Include="utility.h" />
+    <ClInclude Include="windows.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
