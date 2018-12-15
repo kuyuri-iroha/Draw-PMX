@@ -5,10 +5,6 @@
 // WindowsAPIŒn
 class Windows
 {
-private:
-	HINSTANCE moduleHandle;
-	HWND windowHandle;
-
 public:
 	static constexpr unsigned WINDOW_WIDTH = 500;
 	static constexpr unsigned WINDOW_HEIGHT = 500;
@@ -17,4 +13,8 @@ public:
 	bool processMessage();
 
 	inline HWND getWindowHandle() {return windowHandle;}
+
+private:
+	HINSTANCE moduleHandle;
+	HWND windowHandle;
 };

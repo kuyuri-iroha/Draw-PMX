@@ -41,13 +41,13 @@
     <ClInclude Include="pmx_loader.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Windows.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Directx11.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>

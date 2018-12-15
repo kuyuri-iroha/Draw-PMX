@@ -18,8 +18,16 @@ public:
 		RSMode_SIZE
 	};
 
+	inline ID3D11Device* const getDevice() {return pDevice;}
+	inline ID3D11DeviceContext* const getContext() {return pContext;}
+	inline ID3D11RasterizerState* const getRasterizerState(RSMode _mode) {return pRasterizerState[_mode];}
+
+	HRESULT init(Windows& _window);
+	void display();
+	void end();
+
 private:
-	IDXGIFactory* pFactory;
+	IDXGIFactory * pFactory;
 	ID3D11Device* pDevice;
 	ID3D11DeviceContext* pContext;
 	IDXGISwapChain* pSwapChain;
@@ -29,13 +37,5 @@ private:
 	ID3D11DepthStencilState* pDepthStencilState;
 	ID3D11RenderTargetView* pRenderTargetView;
 	ID3D11DepthStencilView* pDepthStencilView;
-
-public:
-	inline ID3D11DeviceContext* const getContext() {return pContext;}
-	inline ID3D11RasterizerState* const getRasterizerState(RSMode _mode) {return pRasterizerState[_mode];}
-
-	HRESULT init(Windows& _window);
-	void display();
-	void end();
 
 };

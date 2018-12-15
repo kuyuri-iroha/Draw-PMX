@@ -1,7 +1,7 @@
 #pragma once
 
-#pragma warning(disable:4005) //DirectX系マクロの再定義警告を非表示
-#pragma warning(disable:4838) //XNAMathの縮小変換警告を非表示
+#pragma warning(disable:4005) //DirectX邉ｻ繝槭け繝ｭ縺ｮ蜀榊ｮ夂ｾｩ隴ｦ蜻翫ｒ髱櫁｡ｨ遉ｺ
+#pragma warning(disable:4838) //XNAMath縺ｮ邵ｮ蟆丞､画鋤隴ｦ蜻翫ｒ髱櫁｡ｨ遉ｺ
 
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>

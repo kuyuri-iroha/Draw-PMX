@@ -39,7 +39,7 @@ bool Windows::init()
 	wcx.hInstance = moduleHandle;
 	wcx.hIcon = static_cast<HICON>(LoadImage(moduleHandle, IDI_APPLICATION, IMAGE_ICON, 0, 0, (LR_DEFAULTSIZE | LR_SHARED)));
 	wcx.hCursor = static_cast<HCURSOR>(LoadImage(NULL, IDC_ARROW, IMAGE_CURSOR, 0, 0, (LR_DEFAULTSIZE | LR_SHARED)));
-	wcx.hbrBackground = static_cast<HBRUSH>(GetStockObject(BLACK_BRUSH));
+	wcx.hbrBackground = static_cast<HBRUSH>(GetStockObject(GRAY_BRUSH));
 	wcx.lpszMenuName = NULL;
 	wcx.lpszClassName = className.c_str();
 	wcx.hIconSm = static_cast<HICON>(LoadImage(moduleHandle, IDI_APPLICATION, IMAGE_ICON, 0, 0, (LR_DEFAULTSIZE | LR_SHARED)));

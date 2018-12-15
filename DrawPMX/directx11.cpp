@@ -41,8 +41,18 @@ HRESULT DirectX11::init(Windows& _window)
 
 	// Swap chain -----------------------------
 	DXGI_SAMPLE_DESC msaaQuality{};
-	msaaQuality.Count = 1;
-	msaaQuality.Quality = 0;
+	for (int i = 1; i <= D3D11_MAX_MULTISAMPLE_SAMPLE_COUNT; i <<= 1)
+	{
+		unsigned quality{};
+		if (SUCCEEDED(pDevice->CheckMultisampleQualityLevels(DXGI_FORMAT_D24_UNORM_S8_UINT, i, &quality)))
+		{
+			if (0 < quality)
+			{
+				msaaQuality.Count = i;
+				msaaQuality.Quality = quality - 1;
+			}
+		}
+	}
 	DXGI_SWAP_CHAIN_DESC spDesc{};
 	spDesc.BufferCount = 1;
 	spDesc.BufferDesc.Width = Windows::WINDOW_WIDTH;
@@ -179,13 +189,13 @@ HRESULT DirectX11::init(Windows& _window)
 		return false;
 	}
 
-	D3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewStatus;
-	depthStencilViewStatus.Format = depthStencilDesc.Format;
-	depthStencilViewStatus.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
-	depthStencilViewStatus.Flags = 0;
-	depthStencilViewStatus.Texture2D.MipSlice = 0;
+	D3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewDesc;
+	depthStencilViewDesc.Format = depthStencilDesc.Format;
+	depthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2DMS;
+	depthStencilViewDesc.Flags = 0;
+	depthStencilViewDesc.Texture2D.MipSlice = 0;
 
-	result = pDevice->CreateDepthStencilView(pDepthStencil, NULL, &pDepthStencilView);
+	result = pDevice->CreateDepthStencilView(pDepthStencil, &depthStencilViewDesc, &pDepthStencilView);
 	SafeRelease(pDepthStencil);
 	if (FAILED(result))
 	{
@@ -207,7 +217,7 @@ HRESULT DirectX11::init(Windows& _window)
 void DirectX11::display()
 {
 	pSwapChain->Present(1, 0);
-	constexpr float CLEAR_COLOR[4]{0.0f, 0.0f, 0.0f, 1.0f};
+	constexpr float CLEAR_COLOR[]{1.0f, 1.0f, 1.0f, 1.0f};
 	pContext->ClearRenderTargetView(pRenderTargetView, CLEAR_COLOR);
 	pContext->ClearDepthStencilView(pDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }

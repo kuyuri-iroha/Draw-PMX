@@ -22,7 +22,7 @@ bool loadPMX(PMXModelData& data, const std::wstring& _filePath)
 	if(_filePath.empty()) {return false;}
 
 	// モデルファイルのパスからモデルフォルダのパスを抽出
-	std::wstring folderPath{_filePath.begin(), _filePath.begin() + _filePath.rfind(L'\\')};
+	std::wstring folderPath{_filePath.begin(), _filePath.begin() + _filePath.rfind(L'\\') + 1};
 
 	// ファイルオープン
 	std::ifstream pmxFile{_filePath, (std::ios::binary | std::ios::in)};
@@ -87,7 +87,7 @@ bool loadPMX(PMXModelData& data, const std::wstring& _filePath)
 	for (int i = 0; i < 4; ++i)
 	{
 		pmxFile.read(reinterpret_cast<char*>(&arrayLength), 4);
-		for (int j = 0; j<arrayLength; ++j)
+		for (unsigned j = 0; j<arrayLength; j++)
 		{
 			pmxFile.get();
 		}

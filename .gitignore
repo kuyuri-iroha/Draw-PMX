@@ -260,5 +260,5 @@ paket-files/
 __pycache__/
 *.pyc
 
-# CWE Lib
-CWE/
+# Model data
+m_GUMI_V3_201306/
