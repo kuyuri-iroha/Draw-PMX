@@ -135,17 +135,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="directx11.cpp" />
+    <ClCompile Include="Directx11.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="pmx_loader.cpp" />
-    <ClCompile Include="windows.cpp" />
+    <ClCompile Include="Windows.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="api.h" />
-    <ClInclude Include="directx11.h" />
+    <ClInclude Include="Directx11.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="pmx_loader.h" />
     <ClInclude Include="utility.h" />
-    <ClInclude Include="windows.h" />
+    <ClInclude Include="Windows.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

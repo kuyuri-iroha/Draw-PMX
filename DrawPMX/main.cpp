@@ -1,6 +1,6 @@
 #include "api.h"
-#include "windows.h"
-#include "directx11.h"
+#include "Windows.h"
+#include "Directx11.h"
 
 Windows window = {};
 DirectX11 directX11 = {};

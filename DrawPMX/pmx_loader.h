@@ -17,7 +17,7 @@ struct PMXModelData
 		// ñ@ê¸
 		XMFLOAT3 normal;
 		// UVç¿ïW
-		XMFLOAT3 uv;
+		XMFLOAT2 uv;
 		// í«â¡UVç¿ïW
 		std::vector<XMFLOAT4> additionalUV;
 

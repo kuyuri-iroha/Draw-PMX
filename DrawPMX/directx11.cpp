@@ -1,4 +1,4 @@
-#include "directx11.h"
+#include "Directx11.h"
 #include "utility.h"
 
 
@@ -218,7 +218,7 @@ void DirectX11::end()
 	if(pContext) {pContext->ClearState();}
 	if(pSwapChain) {pSwapChain->SetFullscreenState(FALSE, NULL);}
 	SafeRelease(pDepthStencilState);
-	for (int i = 0; i<RSType_SIZE; ++i)
+	for (int i = 0; i<RSMode_SIZE; ++i)
 	{
 		SafeRelease(pRasterizerState[i]);
 	}
