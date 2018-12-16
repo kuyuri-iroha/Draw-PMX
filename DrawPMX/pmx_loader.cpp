@@ -46,7 +46,7 @@ bool loadPMX(PMXModelData& data, const std::wstring& _filePath)
 		RIGID_BODY_INDEX_SIZE
 	};
 
-	for (int i = 0; i < 4; ++i)
+	for (int i = 0; i < 4; i++)
 	{
 		pmxHeader[i] = pmxFile.get();
 	}
@@ -72,7 +72,7 @@ bool loadPMX(PMXModelData& data, const std::wstring& _filePath)
 		return false;
 	}
 	std::array<byte, 8> hederData{};
-	for (int i = 0; i < hederDataLength; ++i)
+	for (int i = 0; i < hederDataLength; i++)
 	{
 		hederData[i] = pmxFile.get();
 	}
@@ -84,7 +84,7 @@ bool loadPMX(PMXModelData& data, const std::wstring& _filePath)
 	}
 
 	unsigned arrayLength{};
-	for (int i = 0; i < 4; ++i)
+	for (int i = 0; i < 4; i++)
 	{
 		pmxFile.read(reinterpret_cast<char*>(&arrayLength), 4);
 		for (unsigned j = 0; j<arrayLength; j++)
@@ -99,7 +99,7 @@ bool loadPMX(PMXModelData& data, const std::wstring& _filePath)
 	pmxFile.read(reinterpret_cast<char*>(&numberOfVertex), 4);
 	data.vertices.resize(numberOfVertex);
 
-	for (int i = 0; i < numberOfVertex; ++i)
+	for (int i = 0; i < numberOfVertex; i++)
 	{
 		pmxFile.read(reinterpret_cast<char*>(&data.vertices[i].position), 12);
 		pmxFile.read(reinterpret_cast<char*>(&data.vertices[i].normal), 12);
@@ -178,7 +178,7 @@ bool loadPMX(PMXModelData& data, const std::wstring& _filePath)
 	pmxFile.read(reinterpret_cast<char*>(&numOfSurface), 4);
 	data.surfaces.resize(numOfSurface);
 
-	for (int i = 0; i < numOfSurface; ++i)
+	for (int i = 0; i < numOfSurface; i++)
 	{
 		pmxFile.read(reinterpret_cast<char*>(&data.surfaces[i].vertexIndex), hederData[VERTEX_INDEX_SIZE]);
 
@@ -195,7 +195,7 @@ bool loadPMX(PMXModelData& data, const std::wstring& _filePath)
 	data.texturePaths.resize(numOfTexture);
 
 	std::wstring texturePath{};
-	for (int i = 0; i < numOfTexture; ++i)
+	for (int i = 0; i < numOfTexture; i++)
 	{
 		data.texturePaths[i] = folderPath;
 		getPMXStringUTF16(pmxFile, texturePath);
@@ -207,12 +207,12 @@ bool loadPMX(PMXModelData& data, const std::wstring& _filePath)
 	pmxFile.read(reinterpret_cast<char*>(&numOfMaterial), 4);
 
 	data.materials.resize(numOfMaterial);
-	for (int i = 0; i < numOfMaterial; ++i)
+	for (int i = 0; i < numOfMaterial; i++)
 	{
 		for (int j = 0; j<2; ++j)
 		{
 			pmxFile.read(reinterpret_cast<char*>(&arrayLength), 4);
-			for (unsigned i = 0; i < arrayLength; ++i)
+			for (unsigned i = 0; i < arrayLength; i++)
 			{
 				pmxFile.get();
 			}
@@ -224,17 +224,17 @@ bool loadPMX(PMXModelData& data, const std::wstring& _filePath)
 		pmxFile.read(reinterpret_cast<char*>(&data.materials[i].ambient), 12);
 
 		pmxFile.get();
-		for (int i = 0; i < 16; ++i)
+		for (int i = 0; i < 16; i++)
 		{
 			pmxFile.get();
 		}
-		for (int i = 0; i < 4; ++i)
+		for (int i = 0; i < 4; i++)
 		{
 			pmxFile.get();
 		}
 
 		pmxFile.read(reinterpret_cast<char*>(&data.materials[i].colorMapTextureIndex), hederData[TEXTURE_INDEX_SIZE]);
-		for (unsigned char i = 0; i < hederData[TEXTURE_INDEX_SIZE]; ++i)
+		for (unsigned char i = 0; i < hederData[TEXTURE_INDEX_SIZE]; i++)
 		{
 			pmxFile.get();
 		}
@@ -251,7 +251,7 @@ bool loadPMX(PMXModelData& data, const std::wstring& _filePath)
 		}
 
 		pmxFile.read(reinterpret_cast<char*>(&arrayLength), 4);
-		for (unsigned i = 0; i < arrayLength; ++i)
+		for (unsigned i = 0; i < arrayLength; i++)
 		{
 			pmxFile.get();
 		}
@@ -267,7 +267,7 @@ bool loadPMX(PMXModelData& data, const std::wstring& _filePath)
 	int ikLinkSize = 0;
 	unsigned char angleLim = 0;
 
-	for (int i = 0; i < numOfBone; ++i)
+	for (int i = 0; i < numOfBone; i++)
 	{
 		getPMXStringUTF16(pmxFile, data.bones[i].name);
 		pmxFile.read(reinterpret_cast<char*>(&arrayLength), 4);
