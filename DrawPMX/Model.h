@@ -11,6 +11,9 @@ struct TexturedModelConstantBufferData
 	XMMATRIX world;
 	XMMATRIX view;
 	XMMATRIX projection;
+
+	XMVECTOR specular;
+	XMVECTOR lightDir;
 };
 
 // notTexturedModelシェーダーの定数バッファデータ型
@@ -68,7 +71,7 @@ private:
 
 	std::array<ID3D11Buffer*, VertexBuffer_SIZE> pVertexBuffers;
 	ID3D11Buffer* pIndexBuffer;
-	unsigned mIndexCount;
+	unsigned indexCount;
 
 	HRESULT createTexturedShader(ID3D11Device* const _pDevice, Mesh& mesh);
 	HRESULT createNotTexturedShader(ID3D11Device* const _pDevice, Mesh& mesh);

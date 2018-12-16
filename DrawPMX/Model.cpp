@@ -3,19 +3,6 @@
 #include "utility.h"
 
 
-// シェーダーのコンパイル
-static HRESULT compileShader(const std::wstring& _filePath, const std::string& _entryPoint, bool _isVertexShader, ID3DBlob*& pByteCode)
-{
-	HRESULT result{};
-	std::string shaderType{ _isVertexShader ? "vs_5_0" : "ps_5_0" };
-
-	D3DX11CompileFromFile(_filePath.c_str(), NULL, NULL, _entryPoint.c_str(), shaderType.c_str(),
-		(D3D10_SHADER_DEBUG | D3D10_SHADER_SKIP_OPTIMIZATION | D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COLUMN_MAJOR), NULL, NULL, &pByteCode, NULL, &result);
-
-	return result;
-}
-
-
 bool Model::init(const std::wstring& _filePath, ID3D11Device* const _pDevice)
 {
 	PMXModelData data{};
@@ -94,7 +81,7 @@ bool Model::init(const std::wstring& _filePath, ID3D11Device* const _pDevice)
 	{
 		return false;
 	}
-	mIndexCount = data.surfaces.size();
+	indexCount = data.surfaces.size();
 
 	// メッシュ -------------------------------
 	meshes.resize(data.materials.size());
@@ -102,7 +89,7 @@ bool Model::init(const std::wstring& _filePath, ID3D11Device* const _pDevice)
 	D3DX11_IMAGE_INFO imageInfo{};
 	for (unsigned i = 0; i < meshes.size(); ++i)
 	{
-		if (data.materials[i].colorMapTextureIndex != PMXModelData::NO_DATA_FLAG)
+		if (data.materials[i].colorMapTextureIndex != 255)
 		{
 			// テクスチャ
 			result = D3DX11GetImageInfoFromFileW(data.texturePaths[data.materials[i].colorMapTextureIndex].c_str(), NULL, &imageInfo, NULL);

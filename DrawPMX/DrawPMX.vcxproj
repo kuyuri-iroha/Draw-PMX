@@ -139,6 +139,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="pmx_loader.cpp" />
+    <ClCompile Include="EdgeEffector.cpp" />
     <ClCompile Include="Windows.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +147,7 @@
     <ClInclude Include="Directx11.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="pmx_loader.h" />
+    <ClInclude Include="EdgeEffector.h" />
     <ClInclude Include="utility.h" />
     <ClInclude Include="Windows.h" />
   </ItemGroup>

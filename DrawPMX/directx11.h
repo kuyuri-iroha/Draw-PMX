@@ -15,12 +15,14 @@ public:
 		STANDARD,
 		NOT_CULLING,
 		WIREFRAME,
+		NOT_DEPTH_CLIP,
 		RSMode_SIZE
 	};
 
 	inline ID3D11Device* const getDevice() {return pDevice;}
 	inline ID3D11DeviceContext* const getContext() {return pContext;}
 	inline ID3D11RasterizerState* const getRasterizerState(RSMode _mode) {return pRasterizerState[_mode];}
+	ID3D11ShaderResourceView* pScreenSRV;
 
 	HRESULT init(Windows& _window);
 	void display();
@@ -37,5 +39,4 @@ private:
 	ID3D11DepthStencilState* pDepthStencilState;
 	ID3D11RenderTargetView* pRenderTargetView;
 	ID3D11DepthStencilView* pDepthStencilView;
-
 };

@@ -5,6 +5,11 @@ cbuffer cb : register(b0)
 	matrix world;
 	matrix view;
 	matrix projection;
+
+    float3 specularColor;
+    float specularity;
+    float3 lightDir;
+    float dammy;
 }
 
 
@@ -58,7 +63,16 @@ float4 psMain(PSInput input) : SV_TARGET
     float4 color;
     float4 textureColor = modelTexture.Sample(modelSampler, input.uv);
 
-    color = textureColor;
+    float normalizedNormDotLight = (dot(input.norm, lightDir) + 1.0) / 2.0;
+    float brightness = saturate(normalizedNormDotLight + step(specularity, normalizedNormDotLight));
+
+    color.rgb = textureColor.rgb * brightness;
+    color.a = textureColor.a;
+
+    if(brightness <= 0.6)
+    {
+        color.rgb = color.rgb * 0.2;
+    }
 
     return color;
 }

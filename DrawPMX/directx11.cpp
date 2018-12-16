@@ -60,7 +60,7 @@ HRESULT DirectX11::init(Windows& _window)
 	spDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
 	spDesc.BufferDesc.RefreshRate.Numerator = 60;
 	spDesc.BufferDesc.RefreshRate.Denominator = 1;
-	spDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+	spDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT | DXGI_USAGE_SHADER_INPUT;
 	spDesc.OutputWindow = _window.getWindowHandle();
 	spDesc.SampleDesc = msaaQuality;
 	spDesc.Windowed = true;
@@ -104,8 +104,8 @@ HRESULT DirectX11::init(Windows& _window)
 	rasterizerDesc.SlopeScaledDepthBias = 0;
 	rasterizerDesc.DepthClipEnable = TRUE; //深度値クリッピング
 	rasterizerDesc.ScissorEnable = FALSE; //シザー矩形クリッピング
-	rasterizerDesc.MultisampleEnable = FALSE; //マルチサンプリング
-	rasterizerDesc.AntialiasedLineEnable = FALSE; //線のマルチサンプリング
+	rasterizerDesc.MultisampleEnable = TRUE; //マルチサンプリング
+	rasterizerDesc.AntialiasedLineEnable = TRUE; //線のマルチサンプリング
 
 	// standard
 	result = pDevice->CreateRasterizerState(&rasterizerDesc, &pRasterizerState[STANDARD]);
@@ -122,8 +122,15 @@ HRESULT DirectX11::init(Windows& _window)
 	}
 	// wireframe
 	rasterizerDesc.FillMode = D3D11_FILL_WIREFRAME;
-	rasterizerDesc.CullMode = D3D11_CULL_NONE;
 	result = pDevice->CreateRasterizerState(&rasterizerDesc, &pRasterizerState[WIREFRAME]);
+	if (FAILED(result))
+	{
+		return result;
+	}
+	// not depth clip
+	rasterizerDesc.FillMode = D3D11_FILL_SOLID;
+	rasterizerDesc.DepthClipEnable = FALSE;
+	result = pDevice->CreateRasterizerState(&rasterizerDesc, &pRasterizerState[NOT_DEPTH_CLIP]);
 	if (FAILED(result))
 	{
 		return result;
@@ -153,7 +160,7 @@ HRESULT DirectX11::init(Windows& _window)
 	}
 
 	// Back buffer ----------------------------
-	ID3D11Texture2D* pBackBuffer = 0;
+	ID3D11Texture2D* pBackBuffer{};
 	result = pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&pBackBuffer);
 	if (FAILED(result))
 	{
@@ -164,6 +171,13 @@ HRESULT DirectX11::init(Windows& _window)
 	pBackBuffer->GetDesc(&backBufferDesc);
 
 	result = pDevice->CreateRenderTargetView(pBackBuffer, NULL, &pRenderTargetView);
+	if (FAILED(result))
+	{
+		SafeRelease(pBackBuffer);
+		return result;
+	}
+
+	result = pDevice->CreateShaderResourceView(pBackBuffer, NULL, &pScreenSRV);
 	if (FAILED(result))
 	{
 		SafeRelease(pBackBuffer);
@@ -232,8 +246,9 @@ void DirectX11::end()
 	{
 		SafeRelease(pRasterizerState[i]);
 	}
+	SafeRelease(pScreenSRV);
 	SafeRelease(pBlendState);
-	SafeRelease(pBlendState);
+	SafeRelease(pDepthStencilView);
 	SafeRelease(pRenderTargetView);
 	SafeRelease(pSwapChain);
 	SafeRelease(pContext);
