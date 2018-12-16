@@ -14,6 +14,7 @@ struct TexturedModelConstantBufferData
 
 	XMVECTOR specular;
 	XMVECTOR lightDir;
+	XMVECTOR eyeDir;
 };
 
 // notTexturedModelシェーダーの定数バッファデータ型

@@ -41,7 +41,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		directX11.getContext()->RSSetViewports(1, &viewport);
 
 		// 定数バッファの更新
-		XMVECTOR eyePos{ -3.0f, 18.0f, -7.0f };
+		XMVECTOR eyePos{ 0.0f, 18.0f, -7.0f };
 		XMVECTOR focusPos{ 0.0f, 17.5f, 0.0f };
 		TexturedModelConstantBufferData tmcb{};
 		tmcb.world = XMMatrixIdentity();
@@ -52,6 +52,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			XMMatrixPerspectiveFovLH(50.0f * (XM_PI / 180.0f), static_cast<float>(Windows::WINDOW_WIDTH) / static_cast<float>(Windows::WINDOW_HEIGHT), 1.0f, 1000.0f)
 		);
 		tmcb.lightDir = XMVector3Normalize({-10.0f, 60.0f, -70.0f});
+		tmcb.eyeDir = XMVector3Normalize(XMVectorSubtract(eyePos, focusPos));
 
 		// モデルの描画
 		for (unsigned i = 0; i < model.getMeshesSize(); i++)

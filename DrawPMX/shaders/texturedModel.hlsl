@@ -10,6 +10,8 @@ cbuffer cb : register(b0)
     float specularity;
     float3 lightDir;
     float dammy;
+    float3 eyeDir;
+    float dammy2;
 }
 
 
@@ -72,6 +74,15 @@ float4 psMain(PSInput input) : SV_TARGET
     if(brightness <= 0.6)
     {
         color.rgb = color.rgb * 0.2;
+    }
+    else if(0.95 <= brightness)
+    {
+        color.rgb = color.rgb * 1.5;
+    }
+
+    if(dot(input.norm, eyeDir) <= 0.3)
+    {
+        color.rgb = float3(0.0, 0.0, 0.0);
     }
 
     return color;

@@ -272,7 +272,7 @@ HRESULT Model::createTexturedShader(ID3D11Device* const _pDevice, Mesh& mesh)
 	cbDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 	cbDesc.MiscFlags = 0;
 	cbDesc.StructureByteStride = 0;
-	cbDesc.ByteWidth = 192;
+	cbDesc.ByteWidth = 240;
 
 	result = _pDevice->CreateBuffer(&cbDesc, NULL, &mesh.pConstantBuffer);
 	if (FAILED(result))
