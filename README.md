@@ -1,6 +1,6 @@
-# Draw PMX
+# Draw PMX (トゥーンレンダリングもどき)
 
-![初音ミクver.2.1-by-koron](screenshot/初音ミクver.2.1-by-koron.png)  
+![初音ミクver.2.1-by-koron](screenshot/toon-初音ミクver.2.1-by-koron.png)  
 
 PMXファイルをただ描画するだけのプログラムです。
 また、以下は対応しておりません。
